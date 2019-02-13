@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
     # Upgrading pip
     pip install -U pip
 
-    # Install Django
-    pip install Django
+    # Install virtualenv
+    pip install virtualenv
   SHELL
 end
