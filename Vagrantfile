@@ -36,9 +36,9 @@ Vagrant.configure("2") do |config|
     sudo apt-get -y install python3-venv python3-pip
 
     # Upgrading pip
-    pip install -U pip
+    sudo pip install -U pip
 
     # Install virtualenv
-    pip install virtualenv
+    sudo pip install virtualenv
   SHELL
 end
