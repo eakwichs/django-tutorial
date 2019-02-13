@@ -33,6 +33,12 @@ Vagrant.configure("2") do |config|
     sudo apt-get -y install python3
 
     # Install pip, setuptools, and wheel
-    sudo apt install -y python3-venv python3-pip
+    sudo apt-get -y install python3-venv python3-pip
+
+    # Upgrading pip
+    pip install -U pip
+
+    # Install Django
+    pip install Django
   SHELL
 end
