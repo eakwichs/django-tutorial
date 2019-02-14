@@ -1,15 +1,15 @@
 # django-tutorial
 
 Django 2.1 Official Tutorial on Windows 10<br>
-<a href="https://docs.djangoproject.com/en/2.1/" target="_blank">https://docs.djangoproject.com/en/2.1/</a>
+<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a>
 
 
 <h1>Guide to preparing for tutorials</h1>
 
 <h3>Install programs</h3>
 <ol>
-  <li>Atom ( <a href="https://atom.io/" target="_blank">https://atom.io/</a> )</li>
-  <li>Git ( <a href="https://git-scm.com/" target="_blank">https://git-scm.com/</a> )
+  <li>Atom ( <a href="https://atom.io/">https://atom.io/</a> )</li>
+  <li>Git ( <a href="https://git-scm.com/">https://git-scm.com/</a> )
     <ul>
       <li><strong>Choosing the default editor used by Git</strong></li>
       <li>Choose Nano or Atom ( I choose Atom )</li>
@@ -18,7 +18,7 @@ Django 2.1 Official Tutorial on Windows 10<br>
     </ul>
   </li>
   <li>Vagrant ( <a href="https://www.vagrantup.com/ )</li>
-  <li>VirtualBox ( <a href="https://www.virtualbox.org/" target="_blank">https://www.virtualbox.org/</a> )</li>
+  <li>VirtualBox ( <a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> )</li>
 </ol>
 
 <h3>Set up workspace</h3>
@@ -68,7 +68,7 @@ Create folder <code>workspace</code> on C:\Users\Username
 <code>sudo -H pip install Django</code>
 
 <h1>Do Tutorial: Part 1: Requests and responses</h1>
-<a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/" target="_blank">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
+<a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
 
 <h3>Command</h3>
 <table>
@@ -91,8 +91,8 @@ Create folder <code>workspace</code> on C:\Users\Username
     </td>
   </tr>
   <tr>
-    <td>visit <a href="http://127.0.0.1:8000/" target="_blank">http://127.0.0.1:8000/</a> with your Web browser</td>
-    <td>visit <a href="http://127.0.0.1:8080/" target="_blank">http://127.0.0.1:8080/</a> with your Web browser</td>
+    <td>visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> with your Web browser</td>
+    <td>visit <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> with your Web browser</td>
   </tr>
   <tr>
     <td>python manage.py startapp polls</td>
