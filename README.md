@@ -35,7 +35,7 @@ Create folder <code>workspace</code> on C:\Users\Username
 </ol>
 
 <h3>Create folder <code>django-tutorial</code></h3>
-<ul style="list-style-type: none;">
+<ul>
   <li><code>mkdir tutorial</code></li>
   <li><code>cd workspace/django-tutorial</code></li>
 </ul>
@@ -50,7 +50,7 @@ Create folder <code>workspace</code> on C:\Users\Username
 <code>vagrant provision</code>
 
 <h3>Connects to vagrant machine via SSH</h3>
-<ul style="list-style-type: none;">
+<ul>
   <li><code>vagrant ssh</code></li>
   <li><code>cd /vagrant</code></li>
 </ul>
