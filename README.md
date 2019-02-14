@@ -91,15 +91,15 @@ https://docs.djangoproject.com/en/2.1/intro/tutorial01/
     </td>
   </tr>
   <tr>
-    <td>visit http://127.0.0.1:8000/ with your Web browser</td>
-    <td>visit http://127.0.0.1:8080/ with your Web browser</td>
+    <td>visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> with your Web browser</td>
+    <td>visit <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> with your Web browser</td>
   </tr>
   <tr>
     <td>python manage.py startapp polls</td>
     <td>python3 manage.py startapp polls</td>
   </tr>
   <tr>
-    <td>visit http://localhost:8000/polls/ with your Web browser</td>
-    <td>visit http://localhost:8080/polls/ with your Web browser</td>
+    <td>visit <a href="http://localhost:8000/polls/">http://localhost:8000/polls/</a> with your Web browser</td>
+    <td>visit <a href="http://localhost:8080/polls/">http://localhost:8080/polls/</a> with your Web browser</td>
   </tr>
 </table>
