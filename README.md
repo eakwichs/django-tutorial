@@ -67,5 +67,39 @@ Create folder <code>workspace</code> on C:\Users\Username
 <h3>Install Django</h3>
 <code>sudo -H pip install Django</code>
 
-<h3>Do Tutorial: Part 1: Requests and responses</h3>
+<h1>Do Tutorial: Part 1: Requests and responses</h1>
 https://docs.djangoproject.com/en/2.1/intro/tutorial01/
+
+<h3>Command</h3>
+<table>
+  <tr>
+    <th>From Official</th>
+    <th>Use this</th>
+  </tr>
+  <tr>
+    <td>python -m django --version</td>
+    <td>python3 -m django --version</td>
+  </tr>
+  <tr>
+    <td>django-admin startproject mysite</td>
+    <td>django-admin startproject mysite</td>
+  </tr>
+  <tr>
+    <td>python manage.py runserver</td>
+    <td>sudo python3 manage.py migrate<br>
+      sudo python3 manage.py runserver 0:8080
+    </td>
+  </tr>
+  <tr>
+    <td>visit http://127.0.0.1:8000/ with your Web browser</td>
+    <td>visit http://127.0.0.1:8080/ with your Web browser</td>
+  </tr>
+  <tr>
+    <td>python manage.py startapp polls</td>
+    <td>python3 manage.py startapp polls</td>
+  </tr>
+  <tr>
+    <td>visit http://localhost:8000/polls/ with your Web browser</td>
+    <td>visit http://localhost:8080/polls/ with your Web browser</td>
+  </tr>
+</table>
