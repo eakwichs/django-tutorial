@@ -47,7 +47,7 @@ Create folder <code>workspace</code> on C:\Users\Username
 <h3>Option, Forces reprovisioning of the vagrant machine</h3>
 <code>vagrant provision</code>
 
-<h3>connects to vagrant machine via SSH</h3>
+<h3>Connects to vagrant machine via SSH</h3>
 <code>vagrant ssh</code><br>
 <code>cd /vagrant</code>
 
