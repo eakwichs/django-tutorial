@@ -21,7 +21,7 @@ https://docs.djangoproject.com/en/2.1/
 </ol>
 
 <h3>Set up workspace</h3>
-Create folder workspace <code class="highlighter-rouge">hello-world</code> on C:\Users\Username
+Create folder <code>workspace</code> on C:\Users\Username
 
 
 <h1>How to use</h1>
