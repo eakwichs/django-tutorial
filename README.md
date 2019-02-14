@@ -19,10 +19,12 @@ https://docs.djangoproject.com/en/2.1/
   </li>
   <li>Vagrant ( https://www.vagrantup.com/ )</li>
 </ol>
-<div>
-  <h3>h3</h3>
-  <p>p</p>
-</div>
+
+<h3>Set up workspace</h3>
+Create folder workspace <code class="highlighter-rouge">hello-world</code> on C:\Users\Username
+
+
+<h1>How to use</h1>
 cd workspace/django-tutorial<br>
 <br>
 $ git clone https://github.com/eakwichs/django-tutorial.git .<br>
