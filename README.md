@@ -35,8 +35,10 @@ Create folder <code>workspace</code> on C:\Users\Username
 </ol>
 
 <h3>Create folder <code>django-tutorial</code></h3>
-<code>mkdir tutorial</code><br>
-<code>cd workspace/django-tutorial</code>
+<ul style="list-style-type: none;">
+  <li><code>mkdir tutorial</code></li>
+  <li><code>cd workspace/django-tutorial</code></li>
+</ul>
 
 <h3>Clone this repository into folder <code>django-tutorial</code></h3>
 <code>git clone https://github.com/eakwichs/django-tutorial.git .</code>
@@ -48,8 +50,10 @@ Create folder <code>workspace</code> on C:\Users\Username
 <code>vagrant provision</code>
 
 <h3>Connects to vagrant machine via SSH</h3>
-<code>vagrant ssh</code><br>
-<code>cd /vagrant</code>
+<ul style="list-style-type: none;">
+  <li><code>vagrant ssh</code></li>
+  <li><code>cd /vagrant</code></li>
+</ul>
 
 <h3>Option, Create a virtualenv to isolate our package dependencies locally</h3>
 <code>virtualenv --always-copy .venv</code>
