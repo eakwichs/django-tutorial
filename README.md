@@ -28,9 +28,11 @@ Create folder <code>workspace</code> on C:\Users\Username
 <h1>How to use</h1>
 
 <h3>Open the Git Bash prompt</h3>
-Click the Windows or Start icon.<br>
-In the Programs list, open the Git folder.<br>
-Click the option for Git Bash.
+<ol>
+  <li>Click the Windows or Start icon</li>
+  <li>In the Programs list, open the Git folder</li>
+  <li>Click the option for Git Bash</li>
+</ol>
 
 <h3>Create folder <code>django-tutorial</code></h3>
 <code>mkdir tutorial</code><br>
