@@ -59,3 +59,9 @@ Create folder <code>workspace</code> on C:\Users\Username
 
 <h3>Option, Deactivate this environment</h3>
 <code>deactivate</code>
+
+<h3>Install Django</h3>
+<code>sudo -H pip install Django</code>
+
+<h3>Do Tutorial: Part 1: Requests and responses</h3>
+https://docs.djangoproject.com/en/2.1/intro/tutorial01/
