@@ -28,11 +28,11 @@ Create folder <code>workspace</code> on C:\Users\Username
 <h1>How to use</h1>
 
 <h3>Open the Git Bash prompt</h3>
-<ol>
+<ul>
   <li>Click the Windows or Start icon</li>
   <li>In the Programs list, open the Git folder</li>
   <li>Click the option for Git Bash</li>
-</ol>
+</ul>
 
 <h3>Create folder <code>django-tutorial</code></h3>
 <ul>
