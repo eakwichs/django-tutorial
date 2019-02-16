@@ -66,11 +66,11 @@ Python 3.6.7
 <code>pip3 --version</code><br>
 pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
 
-<h3>Option, Create a virtualenv to isolate our package dependencies locally</h3>
-<code>virtualenv --always-copy .venv</code>
+<h3>Option, Creating virtual environments</h3>
+<code>python3 -m venv mysite_env</code>
 
 <h3>Option, Activate this environment</h3>
-<code>source .venv/bin/activate</code>
+<code>source mysite_env/bin/activate</code>
 
 <h3>Option, Deactivate this environment</h3>
 <code>deactivate</code>
