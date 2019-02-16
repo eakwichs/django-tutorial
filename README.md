@@ -1,7 +1,9 @@
 # django-tutorial
 
 Django 2.1 Official Tutorial on Windows 10<br>
-<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a>
+<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a><br>
+<br>
+Virtual machine in VirtualBox running Ubuntu 18.04
 
 
 <h1>Guide to preparing for tutorials</h1>
@@ -17,8 +19,8 @@ Django 2.1 Official Tutorial on Windows 10<br>
       <li>Use Git and optional Unix Tools from the Windows Command Prompt</li>
     </ul>
   </li>
-  <li>Vagrant ( <a href="https://www.vagrantup.com/ )</li>
   <li>VirtualBox ( <a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> )</li>
+  <li>Vagrant ( <a href="https://www.vagrantup.com/">https://www.vagrantup.com/</a> )</li>
 </ol>
 
 <h3>Set up workspace</h3>
@@ -36,8 +38,9 @@ Create folder <code>workspace</code> on C:\Users\Username
 
 <h3>Create folder <code>django-tutorial</code></h3>
 <ul>
-  <li><code>mkdir tutorial</code></li>
-  <li><code>cd workspace/django-tutorial</code></li>
+  <li><code>cd workspace</code></li>
+  <li><code>mkdir django-tutorial</code></li>
+  <li><code>cd django-tutorial</code></li>
 </ul>
 
 <h3>Clone this repository into folder <code>django-tutorial</code></h3>
