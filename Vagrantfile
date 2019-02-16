@@ -37,8 +37,5 @@ Vagrant.configure("2") do |config|
 
     # Upgrading pip
     sudo -H pip3 install -U pip
-
-    # Install virtualenv
-    sudo -H pip3 install virtualenv
   SHELL
 end
