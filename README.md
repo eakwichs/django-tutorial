@@ -58,6 +58,9 @@ Create folder <code>workspace</code> on C:\Users\Username
   <li><code>cd /vagrant</code></li>
 </ul>
 
+<h3>Option, Terminate the virtual machine</h3>
+<code>vagrant destroy</code>
+
 <h3>Check python version</h3>
 <code>python3 -V</code><br>
 Python 3.6.7
