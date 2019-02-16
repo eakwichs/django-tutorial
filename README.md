@@ -69,15 +69,6 @@ Python 3.6.7
 <code>pip3 --version</code><br>
 pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
 
-<h3>Option, Creating virtual environments</h3>
-<code>python3 -m venv mysite_env</code>
-
-<h3>Option, Activate this environment</h3>
-<code>source mysite_env/bin/activate</code>
-
-<h3>Option, Deactivate this environment</h3>
-<code>deactivate</code>
-
 <h3>Install Django</h3>
 <code>sudo -H pip3 install django</code>
 
