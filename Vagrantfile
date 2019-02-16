@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
 
     # Install pip, setuptools, and wheel
     cd /tmp && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python3.7 get-pip.py --user
+    sudo -H python3.7 get-pip.py
 
     # Install virtualenv
     pip install virtualenv
