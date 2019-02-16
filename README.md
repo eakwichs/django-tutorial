@@ -62,15 +62,30 @@ Create folder <code>workspace</code> on C:\Users\Username
 <code>vagrant destroy</code>
 
 <h3>Check python version</h3>
-<code>python3 -V</code><br>
-Python 3.6.7
+<code>python3.7 -V</code><br>
+Python 3.7.2
 
 <h3>Check pip version</h3>
-<code>pip3 --version</code><br>
-pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
+<code>pip --version</code><br>
+pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
+
+<h3>Create folder <code>src</code></h3>
+<code>mkdir src</code>
+
+<h3>Create a virtual environment</h3>
+<ul>
+  <li><code>cd src</code></li>
+  <li><code>virtualenv --always-copy venv</code></li>
+</ul>
+
+<h3>To begin using the virtual environment, it needs to be activated</h3>
+<code>source venv/bin/activate</code>
+
+<h3>Option, If you are done working in the virtual environment for the moment, you can deactivate it</h3>
+<code>deactivate</code>
 
 <h3>Install Django</h3>
-<code>sudo -H pip3 install django</code>
+<code>pip install Django</code>
 
 <h1>Do Tutorial: Part 1: Requests and responses</h1>
 <a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
@@ -83,16 +98,16 @@ pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
   </tr>
   <tr>
     <td>python -m django --version</td>
-    <td>python3 -m django --version</td>
+    <td>python3.7 -m django --version</td>
   </tr>
   <tr>
     <td>django-admin startproject mysite</td>
-    <td>django-admin startproject mysite</td>
+    <td>django-admin startproject mysite .</td>
   </tr>
   <tr>
     <td>python manage.py runserver</td>
-    <td>python3 manage.py migrate<br>
-      python3 manage.py runserver 0:8080
+    <td>python3.7 manage.py migrate<br>
+      python3.7 manage.py runserver 0:8080
     </td>
   </tr>
   <tr>
@@ -101,7 +116,7 @@ pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
   </tr>
   <tr>
     <td>python manage.py startapp polls</td>
-    <td>python3 manage.py startapp polls</td>
+    <td>python3.7 manage.py startapp polls</td>
   </tr>
   <tr>
     <td>visit <a href="http://localhost:8000/polls/" target="_blank">http://localhost:8000/polls/</a> with your Web browser</td>
