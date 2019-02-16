@@ -27,15 +27,19 @@ Vagrant.configure("2") do |config|
     sudo apt-get -y upgrade
 
     # Set Ubuntu Language
-    sudo locale-gen en_GB.UTF-8
+    sudo locale-gen en_US.UTF-8
 
     # Install Python 3
-    sudo apt-get -y install python3
+    sudo apt-get -y install software-properties-common
+    sudo add-apt-repository -y ppa:deadsnakes/ppa
+    sudo apt-get update
+    sudo apt-get -y install python3.7
 
     # Install pip, setuptools, and wheel
-    sudo apt-get -y install python3-venv python3-pip
+    cd /tmp && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3.7 get-pip.py --user
 
-    # Upgrading pip
-    sudo -H pip3 install -U pip
+    # Install virtualenv
+    pip install virtualenv
   SHELL
 end
