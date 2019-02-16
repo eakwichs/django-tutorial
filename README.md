@@ -58,6 +58,14 @@ Create folder <code>workspace</code> on C:\Users\Username
   <li><code>cd /vagrant</code></li>
 </ul>
 
+<h3>Check python version</h3>
+<code>python3 -V</code><br>
+Python 3.6.7
+
+<h3>Check pip version</h3>
+<code>pip3 --version</code><br>
+pip 19.0.2 from /usr/local/lib/python3.6/dist-packages/pip (python 3.6)
+
 <h3>Option, Create a virtualenv to isolate our package dependencies locally</h3>
 <code>virtualenv --always-copy .venv</code>
 
@@ -68,7 +76,7 @@ Create folder <code>workspace</code> on C:\Users\Username
 <code>deactivate</code>
 
 <h3>Install Django</h3>
-<code>sudo -H pip install Django</code>
+<code>sudo -H pip3 install django</code>
 
 <h1>Do Tutorial: Part 1: Requests and responses</h1>
 <a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
@@ -89,8 +97,8 @@ Create folder <code>workspace</code> on C:\Users\Username
   </tr>
   <tr>
     <td>python manage.py runserver</td>
-    <td>sudo python3 manage.py migrate<br>
-      sudo python3 manage.py runserver 0:8080
+    <td>python3 manage.py migrate<br>
+      python3 manage.py runserver 0:8080
     </td>
   </tr>
   <tr>
