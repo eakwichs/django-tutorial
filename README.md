@@ -5,25 +5,26 @@ Django 2.1 Official Tutorial on Windows 10
 https://docs.djangoproject.com/en/2.1/
 
 
+
 Virtual machine in VirtualBox running Ubuntu 18.04
 
 Using MySQL instead of SQLite
 
 
-#Guide to preparing for tutorials
+# Guide to preparing for tutorials
 
-##Install programs
+## Install programs
 1. [Atom](https://atom.io/)
 2. [Git](https://git-scm.com/)
     - **Choosing the default editor used by Git**
     - Choose Nano or Atom ( I choose Atom )
-  - **How would you like to use Git for the command line?**
-  - Use Git and optional Unix Tools from the Windows Command Prompt</li>
+    - **How would you like to use Git for the command line?**
+    - Use Git and optional Unix Tools from the Windows Command Prompt</li>
 3. [VirtualBox](https://www.virtualbox.org/)
 4. [Vagrant](https://www.vagrantup.com/)
 
 
-<h3>Set up workspace</h3>
+## Set up workspace
 Create folder <code>workspace</code> on C:\Users\Username
 
 
