@@ -83,9 +83,11 @@
     >2.1.7
 
 **Install MySQL**
-- https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install
-- https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04
-- https://www.tecmint.com/install-mysql-8-in-ubuntu/
+https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install
+
+https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04
+
+https://www.tecmint.com/install-mysql-8-in-ubuntu/
 
 1. Go to https://dev.mysql.com/downloads/repo/apt/ for check version-specific-package-name.deb (current is mysql-apt-config_0.8.12-1_all.deb)
 2. `cd /tmp && wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb`
