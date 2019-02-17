@@ -167,7 +167,7 @@ File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutoria
 <code>django-admin startproject mysite .</code>
 
 <h3>Database setup</h3>
-Open up <strong>src/mysite/settings.py</strong>
+Open up <strong>src/mysite/settings.py</strong><br>
 <code>
   <pre>
 DATABASES = {
@@ -176,17 +176,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-</pre>
+  </pre>
 </code>
-<pre>
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-</pre>
-  
 
 <h3>Command</h3>
 <table>
