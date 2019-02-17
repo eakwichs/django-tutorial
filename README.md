@@ -168,13 +168,16 @@ File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutoria
 
 <h3>Database setup</h3>
 Open up <strong>src/mysite/settings.py</strong><br>
-
-<code><pre>DATABASES = {
+<code>
+  <pre>
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}</pre></code>
+}
+  </pre>
+</code>
 
 <h3>Command</h3>
 <table>
