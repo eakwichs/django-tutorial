@@ -83,6 +83,7 @@
     >2.1.7
 
 **Install MySQL**
+
 https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install
 
 https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04
