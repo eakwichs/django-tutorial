@@ -3,6 +3,8 @@
 - Django 2.1 Official Tutorial on Windows 10
 - Virtual machine in VirtualBox running Ubuntu 18.04
 - Using MySQL instead of SQLite
+## Contents
+[1](#install-programs)
 
 ## Install programs
 1. [Atom](https://atom.io/)
