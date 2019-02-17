@@ -48,7 +48,7 @@
 - `python3.7 -V`
     > Python 3.7.2
 
-**>Check pip version**
+**Check pip version**
 - `pip --version`
     > pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 
