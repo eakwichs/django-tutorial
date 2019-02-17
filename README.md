@@ -89,6 +89,10 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 <h3>Install Django</h3>
 <code>pip install Django</code>
 
+<h3>Check Django version</h3>
+<code>python3.7 -m django --version</code><br>
+2.1.7
+
 <h3>Install MySQL</h3>
 <a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install">https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install</a><br>
 <a href="https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04">https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04</a><br>
@@ -113,7 +117,7 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 <p>To restart the MySQL server, use the following command:<br>
 <code>sudo service mysql start</code></p>
 
-<h3>Check the MySQL version</h3>
+<h3>Check MySQL version</h3>
 <code>mysql -V</code>
 
 <h3>Connect to the MySQL Sever</h3>
@@ -140,6 +144,7 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 <h3>Install mysqlclient</h3>displays the privileges and roles that are assigned to a MySQL user account or role
 <ul>
   <li><code>cd /vagrant/src</code></li>
+  <li><code>sudo apt-get -y install python3.7-dev default-libmysqlclient-dev gcc build-essential libssl-dev</code></li>
   <li><code>pip install mysqlclient</code></li>
 </ul>
 
@@ -153,6 +158,35 @@ File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutoria
 
 <h1>Do Tutorial: Part 1: Requests and responses</h1>
 <a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
+
+<h3>Check Django version</h3>
+<code>python3.7 -m django --version</code><br>
+2.1.7
+
+<h3>Creating a project</h3>
+<code>django-admin startproject mysite .</code>
+
+<h3>Database setup</h3>
+Open up <strong>src/mysite/settings.py</strong>
+<code>
+  <pre>
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+</pre>
+</code>
+<pre>
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+</pre>
+  
 
 <h3>Command</h3>
 <table>
