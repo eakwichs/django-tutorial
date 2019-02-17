@@ -234,8 +234,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]</code></pre>
 
-<p>Lets verify it’s working, run the following command:</p>
-<code>python3.7 manage.py runserver 0:8080</code>
+<p>Lets verify it’s working, run the following command:<br>
+<code>python3.7 manage.py runserver 0:8080</code></p>
 
 <p>Go to http://localhost:8000/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.</p>
 
