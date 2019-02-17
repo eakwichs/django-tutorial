@@ -22,6 +22,9 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
+    # Add PPA That contains more recent Python versions packaged for Ubuntu.
+    sudo add-apt-repository -y ppa:deadsnakes/ppa
+
     # Update and upgrade the server packages.
     sudo apt-get update
     sudo apt-get -y upgrade
@@ -31,8 +34,6 @@ Vagrant.configure("2") do |config|
 
     # Install Python 3
     sudo apt-get -y install software-properties-common
-    sudo add-apt-repository -y ppa:deadsnakes/ppa
-    sudo apt-get update
     sudo apt-get -y install python3.7
 
     # Install pip, setuptools, and wheel
