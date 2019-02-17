@@ -15,9 +15,9 @@ Using MySQL instead of SQLite
 ##Install programs
 1. [Atom](https://atom.io/)
 2. [Git](https://git-scm.com/)
-  - **Choosing the default editor used by Git
-  - Choose Nano or Atom ( I choose Atom )
-  - **How would you like to use Git for the command line?
+    - **Choosing the default editor used by Git**
+    - Choose Nano or Atom ( I choose Atom )
+  - **How would you like to use Git for the command line?**
   - Use Git and optional Unix Tools from the Windows Command Prompt</li>
 3. [VirtualBox](https://www.virtualbox.org/)
 4. [Vagrant](https://www.vagrantup.com/)
