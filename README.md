@@ -81,7 +81,7 @@
 **Check Django version**
 - `python3.7 -m django --version`
     >2.1.7
-
+## Set Up MySQL
 **Install MySQL**
 
 https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install
