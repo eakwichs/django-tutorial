@@ -1,29 +1,27 @@
 # django-tutorial
 
-Django 2.1 Official Tutorial on Windows 10<br>
-<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a>
+Django 2.1 Official Tutorial on Windows 10
+
+https://docs.djangoproject.com/en/2.1/
+
 
 Virtual machine in VirtualBox running Ubuntu 18.04
 
 Using MySQL instead of SQLite
 
 
-<h1>Guide to preparing for tutorials</h1>
+#Guide to preparing for tutorials
 
-<h3>Install programs</h3>
-<ol>
-  <li>Atom ( <a href="https://atom.io/">https://atom.io/</a> )</li>
-  <li>Git ( <a href="https://git-scm.com/">https://git-scm.com/</a> )
-    <ul>
-      <li><strong>Choosing the default editor used by Git</strong></li>
-      <li>Choose Nano or Atom ( I choose Atom )</li>
-      <li><strong>How would you like to use Git for the command line?</strong></li>
-      <li>Use Git and optional Unix Tools from the Windows Command Prompt</li>
-    </ul>
-  </li>
-  <li>VirtualBox ( <a href="https://www.virtualbox.org/">https://www.virtualbox.org/</a> )</li>
-  <li>Vagrant ( <a href="https://www.vagrantup.com/">https://www.vagrantup.com/</a> )</li>
-</ol>
+##Install programs
+1. [Atom](https://atom.io/)
+2. [Git](https://git-scm.com/)
+  - **Choosing the default editor used by Git
+  - Choose Nano or Atom ( I choose Atom )
+  - **How would you like to use Git for the command line?
+  - Use Git and optional Unix Tools from the Windows Command Prompt</li>
+3. [VirtualBox](https://www.virtualbox.org/)
+4. [Vagrant](https://www.vagrantup.com/)
+
 
 <h3>Set up workspace</h3>
 Create folder <code>workspace</code> on C:\Users\Username
