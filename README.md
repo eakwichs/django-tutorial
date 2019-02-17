@@ -104,12 +104,14 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 </ol>
 
 <h3>Starting and Stopping the MySQL Server</h3>
-check the status of the MySQL server with the following command:<br>
-<code>sudo service mysql status</code><br>
-Stop the MySQL server with the following command:<br>
-<code>sudo service mysql stop</code><br>
-To restart the MySQL server, use the following command:<br>
-<code>sudo service mysql start</code>
+<p>check the status of the MySQL server with the following command:<br>
+<code>sudo service mysql status</code></p>
+
+<p>Stop the MySQL server with the following command:<br>
+<code>sudo service mysql stop</code></p>
+
+<p>To restart the MySQL server, use the following command:<br>
+<code>sudo service mysql start</code></p>
 
 <h3>Check the MySQL version</h3>
 <code>mysql -V</code>
