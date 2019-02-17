@@ -1,9 +1,11 @@
 # django-tutorial
 
 Django 2.1 Official Tutorial on Windows 10<br>
-<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a><br>
-<br>
+<a href="https://docs.djangoproject.com/en/2.1/">https://docs.djangoproject.com/en/2.1/</a>
+
 Virtual machine in VirtualBox running Ubuntu 18.04
+
+Using MySQL instead of SQLite
 
 
 <h1>Guide to preparing for tutorials</h1>
@@ -86,6 +88,38 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 
 <h3>Install Django</h3>
 <code>pip install Django</code>
+
+<h3>Install MySQL</h3>
+<a href="https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install">https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#apt-repo-fresh-install</a><br>
+<a href="https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04">https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04</a><br>
+<a href="https://www.tecmint.com/install-mysql-8-in-ubuntu/">https://www.tecmint.com/install-mysql-8-in-ubuntu/</a>
+
+<h3>Install mysqlclient</h3>
+<code>pip install mysqlclient</code>
+
+<h3>Overview of systemd</h3>
+systemd provides automatic MySQL server startup and shutdown. It also enables manual server management using the systemctl command. For example:<br>
+<code>sudo -H systemctl {start|stop|restart|status} mysqld</code>
+
+<h3>Access the MySQL shell</h3>
+<code>sudo -H mysql -u root -p</code>
+
+<h3>Check the MySQL version</h3>
+<code>SHOW VARIABLES LIKE "%version%";</code>
+
+<h3>Create database <code>django_tutorial</code></h3>
+<code>CREATE DATABASE django_tutorial CHARACTER SET utf8 COLLATE utf8_general_ci;</code>
+
+<h3>Create database user <code>django_tutorial</code></h3>
+<code>GRANT ALL ON django_tutorial.* TO 'django_tutorial'@'localhost';</code>
+
+<h1>Using Atom</h1>
+
+<h3>Open Atom</h3>
+double click Atom icon on desktop
+
+<h3>Add folder <code>django-tutorial</code> to Project Folder</h3>
+File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutorial
 
 <h1>Do Tutorial: Part 1: Requests and responses</h1>
 <a href="https://docs.djangoproject.com/en/2.1/intro/tutorial01/">https://docs.djangoproject.com/en/2.1/intro/tutorial01/</a>
