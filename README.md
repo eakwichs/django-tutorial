@@ -209,7 +209,7 @@ urlpatterns = [
 - Lets verify it’s working, run the following command:<br>
 `python3.7 manage.py runserver 0:8080`
 
-- Go to http://localhost:8000/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.
+- Go to http://localhost:8080/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.
 
 **Summary Command**
 
