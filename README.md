@@ -167,7 +167,7 @@ File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutoria
 <code>django-admin startproject mysite .</code>
 
 <h3>Database setup</h3>
-Open up <strong>src/mysite/settings.py</strong><br>
+Open up <strong>src/mysite/settings.py</strong>
 <code>
   <pre>
 DATABASES = {
