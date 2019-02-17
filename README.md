@@ -167,15 +167,79 @@ File > Add Project Folder... > choose C:\Users\Username\workspace\django-tutoria
 <code>django-admin startproject mysite .</code>
 
 <h3>Database setup</h3>
-Open up <strong>src/mysite/settings.py</strong><br>
-<pre><code>DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}</code></pre>
+<p>Open up <strong>src/mysite/settings.py</strong> and replace the current DATABASES lines with the following</p>
+<pre><code>...
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-<h3>Command</h3>
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_tutorial',
+        'USER': 'django_tutorial',
+        'PASSWORD': 'PWjg147ttL$',
+        'HOST': '',
+        'PORT': '',
+        'OPTIONS': {
+            'init_command': 'SET default_storage_engine=INNODB',
+            'sql_mode': 'STRICT_TRANS_TABLES',
+        },
+    }
+}
+...</code></pre>
+
+<p>While you’re editing <strong>src/mysite/settings.py</strong>, set TIME_ZONE to your time zone.</p>
+<pre><code>...
+# Internationalization
+# https://docs.djangoproject.com/en/2.1/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'Asia/Bangkok'
+...</code></pre>
+
+<p>Sync your database</p>
+<code>python3.7 manage.py migrate</code>
+
+<h3>The development server</h3>
+<p>Let’s verify your Django project works.</p>
+<code>python3.7 manage.py runserver 0:8080</code>
+
+<h3>Creating the Polls app</h3>
+<code>python3.7 manage.py startapp polls</code>
+
+<h3>Write your first view</h3>
+<p>Open the file <strong>src/polls/views.py</strong> and put the following Python code in it:</p>
+<pre><code>from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")</code></pre>
+    
+<p>In the <strong>src/polls/urls.py</strong> file include the following code:</p>
+<pre><code>from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]</code></pre>
+
+<p>In <strong>src/mysite/urls.py</strong>, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have:</p>
+<pre><code>from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('polls/', include('polls.urls')),
+    path('admin/', admin.site.urls),
+]</code></pre>
+
+<p>Lets verify it’s working, run the following command:</p>
+<code>python3.7 manage.py runserver 0:8080</code>
+
+<p>Go to http://localhost:8000/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.</p>
+
+<h3>Summary Command</h3>
 <table>
   <tr>
     <th>From Official</th>
