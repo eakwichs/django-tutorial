@@ -112,6 +112,7 @@ systemd provides automatic MySQL server startup and shutdown. It also enables ma
 
 <h3>Create database user <code>django_tutorial</code></h3>
 <code>CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL';</code>
+
 <code>GRANT ALL PRIVILEGES ON django_tutorial.* TO 'django_tutorial'@'localhost';</code>
 
 <h1>Using Atom</h1>
