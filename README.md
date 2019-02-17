@@ -116,21 +116,30 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 <h3>Check the MySQL version</h3>
 <code>mysql -V</code>
 
-<h3>Access the MySQL shell</h3>
-<code>sudo -H mysql -u root -p</code>
+<h3>Connect to the MySQL Sever</h3>
+<code>sudo mysql -u root -p</code>
 
 <h3>Create database <code>django_tutorial</code></h3>
 <code>CREATE DATABASE django_tutorial CHARACTER SET utf8 COLLATE utf8_general_ci;</code>
 
 <h3>Create database user <code>django_tutorial</code></h3>
 <ul>
-  <li><code>CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL';</code></li>
+  <li><code>CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL$';</code></li>
   <li><code>GRANT ALL PRIVILEGES ON django_tutorial.* TO 'django_tutorial'@'localhost';</code></li>
 </ul>
 
-<h3>Install mysqlclient</h3>
+<h3>Lists the databases on the MySQL server host</h3>
+<code>SHOW DATABASES;</code>
+
+<h3>Displays the privileges and roles that are assigned to a MySQL user account or role</h3>
+<code>SHOW GRANTS FOR 'django_tutorial'@'localhost';</code>
+
+<h3>Disconnecting from the MySQL Server</h3>
+<code>QUIT</code>
+
+<h3>Install mysqlclient</h3>displays the privileges and roles that are assigned to a MySQL user account or role
 <ul>
-  <li><code>cd /vagrant</code></li>
+  <li><code>cd /vagrant/src</code></li>
   <li><code>pip install mysqlclient</code></li>
 </ul>
 
