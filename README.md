@@ -94,18 +94,28 @@ pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 <a href="https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04">https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04</a><br>
 <a href="https://www.tecmint.com/install-mysql-8-in-ubuntu/">https://www.tecmint.com/install-mysql-8-in-ubuntu/</a>
 
-<h3>Install mysqlclient</h3>
-<code>pip install mysqlclient</code>
+<ol>
+  <li>Go to <a href="https://dev.mysql.com/downloads/repo/apt/">https://dev.mysql.com/downloads/repo/apt/</a> for check version-specific-package-name.deb (current is mysql-apt-config_0.8.12-1_all.deb)</li>
+  <li><code>cd /tmp && wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb</code></li>
+  <li><code>sudo dpkg -i mysql-apt-config_0.8.12-1_all.deb</code></li>
+  <li><code>sudo apt-get update</code></li>
+  <li><code>sudo apt-get install mysql-server</code></li>
+  <li><code>sudo mysql_secure_installation</code></li>
+</ol>
 
-<h3>Overview of systemd</h3>
-systemd provides automatic MySQL server startup and shutdown. It also enables manual server management using the systemctl command. For example:<br>
-<code>sudo -H systemctl {start|stop|restart|status} mysqld</code>
+<h3>Starting and Stopping the MySQL Server</h3>
+check the status of the MySQL server with the following command:<br>
+<code>sudo service mysql status</code><br>
+Stop the MySQL server with the following command:<br>
+<code>sudo service mysql stop</code><br>
+To restart the MySQL server, use the following command:<br>
+<code>sudo service mysql start</code>
+
+<h3>Check the MySQL version</h3>
+<code>mysql -V</code>
 
 <h3>Access the MySQL shell</h3>
 <code>sudo -H mysql -u root -p</code>
-
-<h3>Check the MySQL version</h3>
-<code>SHOW VARIABLES LIKE "%version%";</code>
 
 <h3>Create database <code>django_tutorial</code></h3>
 <code>CREATE DATABASE django_tutorial CHARACTER SET utf8 COLLATE utf8_general_ci;</code>
@@ -114,6 +124,12 @@ systemd provides automatic MySQL server startup and shutdown. It also enables ma
 <ul>
   <li><code>CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL';</code></li>
   <li><code>GRANT ALL PRIVILEGES ON django_tutorial.* TO 'django_tutorial'@'localhost';</code></li>
+</ul>
+
+<h3>Install mysqlclient</h3>
+<ul>
+  <li><code>cd /vagrant</code></li>
+  <li><code>pip install mysqlclient</code></li>
 </ul>
 
 <h1>Using Atom</h1>
