@@ -125,14 +125,14 @@
 
 ## Do Tutorial: Part 1: Requests and responses https://docs.djangoproject.com/en/2.1/intro/tutorial01/
 **Check Django version**
-- `python3.7 -m django --version</code><br>
+- `python3.7 -m django --version`
     > 2.1.7
 
 **Creating a project**
 - `django-admin startproject mysite .`
 
 **Database setup**
-Open up **src/mysite/settings.py** and replace the current DATABASES lines with the following
+- Open up **src/mysite/settings.py** and replace the current DATABASES lines with the following
 ```
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -154,87 +154,71 @@ DATABASES = {
 ...
 ```
 
-<p>While you’re editing <strong>src/mysite/settings.py</strong>, set TIME_ZONE to your time zone.</p>
-<pre><code>...
+- While you’re editing **src/mysite/settings.py**, set TIME_ZONE to your time zone.
+```
+...
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Bangkok'
-...</code></pre>
+...
+```
 
-<p>Sync your database</p>
-<code>python3.7 manage.py migrate</code>
+- Sync your database<br>
+`python3.7 manage.py migrate`
 
-<h3>The development server</h3>
-<p>Let’s verify your Django project works.</p>
-<code>python3.7 manage.py runserver 0:8080</code>
+**The development server** Let’s verify your Django project works.
+- `python3.7 manage.py runserver 0:8080`
 
-<h3>Creating the Polls app</h3>
-<code>python3.7 manage.py startapp polls</code>
+**Creating the Polls app**
+- `python3.7 manage.py startapp polls`
 
-<h3>Write your first view</h3>
-<p>Open the file <strong>src/polls/views.py</strong> and put the following Python code in it:</p>
-<pre><code>from django.http import HttpResponse
+**Write your first view**
+- Open the file **src/polls/views.py** and put the following Python code in it:
+```
+from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")</code></pre>
-    
-<p>In the <strong>src/polls/urls.py</strong> file include the following code:</p>
-<pre><code>from django.urls import path
+    return HttpResponse("Hello, world. You're at the polls index.")
+```
+
+- In the **src/polls/urls.py** file include the following code:
+```
+from django.urls import path
 
 from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-]</code></pre>
+]
+```
 
-<p>In <strong>src/mysite/urls.py</strong>, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have:</p>
-<pre><code>from django.contrib import admin
+- In **src/mysite/urls.py**, add an import for django.urls.include and insert an include() in the urlpatterns list, so you have:
+```
+from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls),
-]</code></pre>
+]
+```
+- Lets verify it’s working, run the following command:<br>
+`python3.7 manage.py runserver 0:8080`
 
-<p>Lets verify it’s working, run the following command:<br>
-<code>python3.7 manage.py runserver 0:8080</code></p>
+- Go to http://localhost:8000/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.
 
-<p>Go to http://localhost:8000/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.</p>
+**Summary Command**
 
-<h3>Summary Command</h3>
-<table>
-  <tr>
-    <th>From Official</th>
-    <th>Use this</th>
-  </tr>
-  <tr>
-    <td>python -m django --version</td>
-    <td>python3.7 -m django --version</td>
-  </tr>
-  <tr>
-    <td>django-admin startproject mysite</td>
-    <td>django-admin startproject mysite .</td>
-  </tr>
-  <tr>
-    <td>python manage.py runserver</td>
-    <td>python3.7 manage.py migrate<br>
-      python3.7 manage.py runserver 0:8080
-    </td>
-  </tr>
-  <tr>
-    <td>visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> with your Web browser</td>
-    <td>visit <a href="http://127.0.0.1:8080/">http://127.0.0.1:8080/</a> with your Web browser</td>
-  </tr>
-  <tr>
-    <td>python manage.py startapp polls</td>
-    <td>python3.7 manage.py startapp polls</td>
-  </tr>
-  <tr>
-    <td>visit <a href="http://localhost:8000/polls/" target="_blank">http://localhost:8000/polls/</a> with your Web browser</td>
-    <td>visit <a href="http://localhost:8080/polls/" target="_blank">http://localhost:8080/polls/</a> with your Web browser</td>
-  </tr>
-</table>
+| From Official | Use this |
+| ---- | ---- |
+| python -m django --v-ersion | python3.7 -m django --version |
+| django-admin startproject mysite | django-admin startproject mysite .|
+| python manage.py runserver | python3.7 manage.py migrate<br>python3.7 manage.py runserver 0:8080 |
+| visit http://127.0.0.1:8000/ with your Web browser | visit http://127.0.0.1:8080/ with your Web browser |
+| python manage.py startapp polls | python3.7 manage.py startapp polls |
+| visit http://localhost:8000/polls/ with your Web browser | visit http://localhost:8080/polls/ with your Web browser |
+
