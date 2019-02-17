@@ -6,6 +6,8 @@
 ## Contents
 [Install programs](#install-programs)
 
+[Set up workspace](#set-up-workspace)
+
 [Using Git Bash](#using-git-bash)
 
 [Using Atom](#using-atom)
