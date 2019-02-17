@@ -111,7 +111,8 @@ systemd provides automatic MySQL server startup and shutdown. It also enables ma
 <code>CREATE DATABASE django_tutorial CHARACTER SET utf8 COLLATE utf8_general_ci;</code>
 
 <h3>Create database user <code>django_tutorial</code></h3>
-<code>GRANT ALL ON django_tutorial.* TO 'django_tutorial'@'localhost';</code>
+<code>CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL';</code>
+<code>GRANT ALL PRIVILEGES ON django_tutorial.* TO 'django_tutorial'@'localhost';</code>
 
 <h1>Using Atom</h1>
 
