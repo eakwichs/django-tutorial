@@ -10,6 +10,8 @@
 
 [Using Git Bash](#using-git-bash)
 
+[Set Up MySQL](#set-up-mysql)
+
 [Using Atom](#using-atom)
 
 [Do Tutorial: Part 1: Requests and responses](#do-tutorial-part-1-requests-and-responses-httpsdocsdjangoprojectcomen21introtutorial01)
