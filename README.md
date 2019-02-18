@@ -230,8 +230,8 @@ urlpatterns = [
 
 | From Official | Use this |
 | ---- | ---- |
-| python -m django --v-ersion | python3.7 -m django --version |
-| django-admin startproject mysite | django-admin startproject mysite .|
+| python -m django --version | python3.7 -m django --version |
+| django-admin startproject mysite | django-admin startproject mysite . |
 | python manage.py runserver | python3.7 manage.py migrate<br>python3.7 manage.py runserver 0:8080 |
 | visit http://127.0.0.1:8000/ with your Web browser | visit http://127.0.0.1:8080/ with your Web browser |
 | python manage.py startapp polls | python3.7 manage.py startapp polls |
