@@ -128,7 +128,7 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 
 **Install mysqlclient**
 - `cd /vagrant/src`
-- `sudo apt-get -y install python3.7-dev default-libmysqlclient-dev gcc build-essential libssl-dev`
+- `sudo apt-get -y install python3.7-dev default-libmysqlclient-dev gcc libssl-dev`
 - `pip install mysqlclient`
 
 ## Using Atom
