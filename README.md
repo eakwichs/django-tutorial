@@ -186,6 +186,7 @@ TIME_ZONE = 'Asia/Bangkok'
 
 **The development server** Let’s verify your Django project works.
 - `python3.7 manage.py runserver 0:8080`
+- visit http://127.0.0.1:8080/ with your Web browser. You’ll see a “Congratulations!” page, with a rocket taking off. It worked!
 
 **Creating the Polls app**
 - `python3.7 manage.py startapp polls`
