@@ -430,7 +430,7 @@ True
 >>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
 >>> c.delete()
 ```
-
+- To exit the Python shell, use this command:<br>
 `exit()`
 
 ### Introducing the Django Admin
