@@ -16,6 +16,8 @@
 
 [Do Tutorial: Part 1: Requests and responses](#do-tutorial-part-1-requests-and-responses-httpsdocsdjangoprojectcomen21introtutorial01)
 
+[Do Tutorial:  Part 2: Models and the admin site](#do-tutorial-part-1-requests-and-responses-httpsdocsdjangoprojectcomen21introtutorial01)
+
 ## Install programs
 1. [Atom](https://atom.io/)
 2. [Git](https://git-scm.com/)
@@ -238,3 +240,231 @@ urlpatterns = [
 | python manage.py startapp polls | python3.7 manage.py startapp polls |
 | visit http://localhost:8000/polls/ with your Web browser | visit http://localhost:8080/polls/ with your Web browser |
 
+## Do Tutorial: Part 2: Models and the admin site https://docs.djangoproject.com/en/2.1/intro/tutorial02/
+**Database setup**
+- Open the file **src/mysite/settings.py**. If you wish to use another database, install the appropriate database bindings and change the following keys in the DATABASES 'default' item to match your database connection settings.
+- If you change your database connection settings, run the following command:<br>
+`python3.7 manage.py migrate`
+
+**Creating models**
+- Edit the **src/polls/models.py** file so it looks like this:<br>
+```
+from django.db import models
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+```
+
+**Activating models**
+- Edit the **src/mysite/settings.py** file and add that dotted path to the **INSTALLED_APPS** setting. It’ll look like this:
+```
+INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+- Now Django knows to include the **polls** app. Let’s run another command:<br>
+`python3.7 manage.py makemigrations polls`
+- Generate command that will run the migrations for you and manage your database schema automatically<br>
+`python3.7 manage.py sqlmigrate polls 0001`
+- Run **migrate** again to create those model tables in your database:<br>
+`python3.7 manage.py migrate`
+
+**Playing with the API**
+- To invoke the Python shell, use this command:<br>
+`python3.7 manage.py shell`
+- Once you’re in the shell, explore the database API:<br>
+```
+>>> from polls.models import Choice, Question  # Import the model classes we just wrote.
+
+# No questions are in the system yet.
+>>> Question.objects.all()
+<QuerySet []>
+
+# Create a new Question.
+# Support for time zones is enabled in the default settings file, so
+# Django expects a datetime with tzinfo for pub_date. Use timezone.now()
+# instead of datetime.datetime.now() and it will do the right thing.
+>>> from django.utils import timezone
+>>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+# Save the object into the database. You have to call save() explicitly.
+>>> q.save()
+
+# Now it has an ID.
+>>> q.id
+1
+
+# Access model field values via Python attributes.
+>>> q.question_text
+"What's new?"
+>>> q.pub_date
+datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
+
+# Change values by changing the attributes, then calling save().
+>>> q.question_text = "What's up?"
+>>> q.save()
+
+# objects.all() displays all the questions in the database.
+>>> Question.objects.all()
+<QuerySet [<Question: Question object (1)>]>
+```
+- **<Question: Question object (1)>** isn’t a helpful representation of this object. Let’s fix that by editing the **Question** model (in the **src/polls/models.py** file) and adding a **__str__()** method to both **Question** and **Choice**:<br>
+```
+from django.db import models
+
+class Question(models.Model):
+    # ...
+    def __str__(self):
+        return self.question_text
+
+class Choice(models.Model):
+    # ...
+    def __str__(self):
+        return self.choice_text
+```
+- Let’s add a custom method, just for demonstration:<br>
+```
+import datetime
+
+from django.db import models
+from django.utils import timezone
+
+
+class Question(models.Model):
+    # ...
+    def was_published_recently(self):
+        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+```
+
+- Save these changes and start a new Python interactive shell again:<br>
+`exit()`<br>
+`python3.7 manage.py shell`<br>
+```
+>>> from polls.models import Choice, Question
+
+# Make sure our __str__() addition worked.
+>>> Question.objects.all()
+<QuerySet [<Question: What's up?>]>
+
+# Django provides a rich database lookup API that's entirely driven by
+# keyword arguments.
+>>> Question.objects.filter(id=1)
+<QuerySet [<Question: What's up?>]>
+>>> Question.objects.filter(question_text__startswith='What')
+<QuerySet [<Question: What's up?>]>
+
+# Get the question that was published this year.
+>>> from django.utils import timezone
+>>> current_year = timezone.now().year
+>>> Question.objects.get(pub_date__year=current_year)
+<Question: What's up?>
+
+# Request an ID that doesn't exist, this will raise an exception.
+>>> Question.objects.get(id=2)
+Traceback (most recent call last):
+    ...
+DoesNotExist: Question matching query does not exist.
+
+# Lookup by a primary key is the most common case, so Django provides a
+# shortcut for primary-key exact lookups.
+# The following is identical to Question.objects.get(id=1).
+>>> Question.objects.get(pk=1)
+<Question: What's up?>
+
+# Make sure our custom method worked.
+>>> q = Question.objects.get(pk=1)
+>>> q.was_published_recently()
+True
+
+# Give the Question a couple of Choices. The create call constructs a new
+# Choice object, does the INSERT statement, adds the choice to the set
+# of available choices and returns the new Choice object. Django creates
+# a set to hold the "other side" of a ForeignKey relation
+# (e.g. a question's choice) which can be accessed via the API.
+>>> q = Question.objects.get(pk=1)
+
+# Display any choices from the related object set -- none so far.
+>>> q.choice_set.all()
+<QuerySet []>
+
+# Create three choices.
+>>> q.choice_set.create(choice_text='Not much', votes=0)
+<Choice: Not much>
+>>> q.choice_set.create(choice_text='The sky', votes=0)
+<Choice: The sky>
+>>> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
+
+# Choice objects have API access to their related Question objects.
+>>> c.question
+<Question: What's up?>
+
+# And vice versa: Question objects get access to Choice objects.
+>>> q.choice_set.all()
+<QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]>
+>>> q.choice_set.count()
+3
+
+# The API automatically follows relationships as far as you need.
+# Use double underscores to separate relationships.
+# This works as many levels deep as you want; there's no limit.
+# Find all Choices for any question whose pub_date is in this year
+# (reusing the 'current_year' variable we created above).
+>>> Choice.objects.filter(question__pub_date__year=current_year)
+<QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]>
+
+# Let's delete one of the choices. Use delete() for that.
+>>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
+>>> c.delete()
+```
+<br>
+`exit()`
+
+### Introducing the Django Admin
+
+**Creating an admin user**
+- First we’ll need to create a user who can login to the admin site. Run the following command:<br>
+`python3.7 manage.py createsuperuser`
+- Enter your desired username and press enter.<br>
+`Username: admin`
+- You will then be prompted for your desired email address:<br>
+`Email address: admin@example.com`
+- The final step is to enter your password. You will be asked to enter your password twice, the second time as a confirmation of the first.<br>
+```
+Password: **********
+Password (again): *********
+Superuser created successfully.
+```
+
+**Start the development server**
+- If the server is not running start it like so:<br>
+`python3.7 manage.py runserver 0:8080`
+- visit http://localhost:8080/admin/ with your Web browser
+- Now, try logging in with the superuser account you created in the previous step.
+
+
+**Make the poll app modifiable in the admin**
+- open the **src/polls/admin.py** file, and edit it to look like this:<br>
+```
+from django.contrib import admin
+
+from .models import Question
+
+admin.site.register(Question)
+```
+- Now that we’ve registered **Question**, Django knows that it should be displayed on the admin index page
+- Click “Questions”. Now you’re at the “change list” page for questions. This page displays all the questions in the database and lets you choose one to change it. There’s the “What’s up?” question we created earlier
+- Click the “What’s up?” question to edit it:
