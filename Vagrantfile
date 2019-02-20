@@ -41,6 +41,6 @@ Vagrant.configure("2") do |config|
     sudo -H python3.7 get-pip.py
 
     # Install virtualenv
-    pip install virtualenv
+    sudo -H pip install virtualenv
   SHELL
 end
