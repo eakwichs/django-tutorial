@@ -16,7 +16,9 @@
 
 [Do Tutorial: Part 1: Requests and responses](#do-tutorial-part-1-requests-and-responses-httpsdocsdjangoprojectcomen21introtutorial01)
 
-[Do Tutorial:  Part 2: Models and the admin site](#do-tutorial-part-2-models-and-the-admin-site-httpsdocsdjangoprojectcomen21introtutorial02)
+[Do Tutorial: Part 2: Models and the admin site](#do-tutorial-part-2-models-and-the-admin-site-httpsdocsdjangoprojectcomen21introtutorial02)
+
+[Do Tutorial: Do Tutorial: Part 3: Views and templates](#do-tutorial-part-3-views-and-templates-httpsdocsdjangoprojectcomen21introtutorial03)
 
 ## Install programs
 1. [Atom](https://atom.io/)
