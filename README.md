@@ -18,7 +18,9 @@
 
 [Do Tutorial: Part 2: Models and the admin site](#do-tutorial-part-2-models-and-the-admin-site-httpsdocsdjangoprojectcomen21introtutorial02)
 
-[Do Tutorial: Do Tutorial: Part 3: Views and templates](#do-tutorial-part-3-views-and-templates-httpsdocsdjangoprojectcomen21introtutorial03)
+[Do Tutorial: Part 3: Views and templates](#do-tutorial-part-3-views-and-templates-httpsdocsdjangoprojectcomen21introtutorial03)
+
+[Do Tutorial: Part 4: Forms and generic views](#do-tutorial-part-4-forms-and-generic-views-httpsdocsdjangoprojectcomen21introtutorial04)
 
 ## Install programs
 1. [Atom](https://atom.io/)
@@ -26,7 +28,7 @@
     - **Choosing the default editor used by Git**
     - Choose Nano or Atom ( I choose Atom )
     - **How would you like to use Git for the command line?**
-    - Use Git and optional Unix Tools from the Windows Command Prompt</li>
+    - Use Git and optional Unix Tools from the Windows Command Prompt
 3. [VirtualBox](https://www.virtualbox.org/)
 4. [Vagrant](https://www.vagrantup.com/)
 
@@ -185,7 +187,8 @@ TIME_ZONE = 'Asia/Bangkok'
 ...
 ```
 
-- Sync your database<br>
+- Sync your database
+
 `python3.7 manage.py migrate`
 
 **The development server** Let’s verify your Django project works.
@@ -226,7 +229,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 ```
-- Lets verify it’s working, run the following command:<br>
+- Lets verify it’s working, run the following command:
+
 `python3.7 manage.py runserver 0:8080`
 
 - Go to http://localhost:8080/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.
@@ -245,11 +249,12 @@ urlpatterns = [
 ## Do Tutorial: Part 2: Models and the admin site https://docs.djangoproject.com/en/2.1/intro/tutorial02/
 **Database setup**
 - Open the file **src/mysite/settings.py**. If you wish to use another database, install the appropriate database bindings and change the following keys in the DATABASES 'default' item to match your database connection settings.
-- If you change your database connection settings, run the following command:<br>
+- If you change your database connection settings, run the following command:
+
 `python3.7 manage.py migrate`
 
 **Creating models**
-- Edit the **src/polls/models.py** file so it looks like this:<br>
+- Edit the **src/polls/models.py** file so it looks like this:
 ```
 from django.db import models
 
@@ -278,17 +283,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 ```
-- Now Django knows to include the **polls** app. Let’s run another command:<br>
+- Now Django knows to include the **polls** app. Let’s run another command:
+
 `python3.7 manage.py makemigrations polls`
-- Generate command that will run the migrations for you and manage your database schema automatically<br>
+- Generate command that will run the migrations for you and manage your database schema automatically
+
 `python3.7 manage.py sqlmigrate polls 0001`
-- Run **migrate** again to create those model tables in your database:<br>
+- Run **migrate** again to create those model tables in your database:
+
 `python3.7 manage.py migrate`
 
 **Playing with the API**
-- To invoke the Python shell, use this command:<br>
+- To invoke the Python shell, use this command:
+
 `python3.7 manage.py shell`
-- Once you’re in the shell, explore the database API:<br>
+- Once you’re in the shell, explore the database API:
 ```
 >>> from polls.models import Choice, Question  # Import the model classes we just wrote.
 
@@ -324,7 +333,7 @@ datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
 >>> Question.objects.all()
 <QuerySet [<Question: Question object (1)>]>
 ```
-- **<Question: Question object (1)>** isn’t a helpful representation of this object. Let’s fix that by editing the **Question** model (in the **src/polls/models.py** file) and adding a **__str__()** method to both **Question** and **Choice**:<br>
+- **<Question: Question object (1)>** isn’t a helpful representation of this object. Let’s fix that by editing the **Question** model (in the **src/polls/models.py** file) and adding a **__str__()** method to both **Question** and **Choice**:
 ```
 from django.db import models
 
@@ -338,7 +347,7 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
 ```
-- Let’s add a custom method, just for demonstration:<br>
+- Let’s add a custom method, just for demonstration:
 ```
 import datetime
 
@@ -352,9 +361,11 @@ class Question(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 ```
 
-- Save these changes and start a new Python interactive shell again:<br>
-`exit()`<br>
-`python3.7 manage.py shell`<br>
+- Save these changes and start a new Python interactive shell again:
+
+`exit()`
+
+`python3.7 manage.py shell`
 ```
 >>> from polls.models import Choice, Question
 
@@ -432,19 +443,23 @@ True
 >>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
 >>> c.delete()
 ```
-- To exit the Python shell, use this command:<br>
+- To exit the Python shell, use this command:
+
 `exit()`
 
 ### Introducing the Django Admin
 
 **Creating an admin user**
-- First we’ll need to create a user who can login to the admin site. Run the following command:<br>
+- First we’ll need to create a user who can login to the admin site. Run the following command:
+
 `python3.7 manage.py createsuperuser`
-- Enter your desired username and press enter.<br>
+- Enter your desired username and press enter.
+
 `Username: admin`
-- You will then be prompted for your desired email address:<br>
+- You will then be prompted for your desired email address:
+
 `Email address: admin@example.com`
-- The final step is to enter your password. You will be asked to enter your password twice, the second time as a confirmation of the first.<br>
+- The final step is to enter your password. You will be asked to enter your password twice, the second time as a confirmation of the first.
 ```
 Password: **********
 Password (again): *********
@@ -452,14 +467,15 @@ Superuser created successfully.
 ```
 
 **Start the development server**
-- If the server is not running start it like so:<br>
+- If the server is not running start it like so:
+
 `python3.7 manage.py runserver 0:8080`
 - visit http://localhost:8080/admin/ with your Web browser
 - Now, try logging in with the superuser account you created in the previous step.
 
 
 **Make the poll app modifiable in the admin**
-- open the **src/polls/admin.py** file, and edit it to look like this:<br>
+- open the **src/polls/admin.py** file, and edit it to look like this:
 ```
 from django.contrib import admin
 
@@ -653,4 +669,169 @@ urlpatterns = [
 ```
 # src/polls/index.html
 <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+```
+
+## Do Tutorial: Part 4: Forms and generic views https://docs.djangoproject.com/en/2.1/intro/tutorial04/
+**Write a simple form**
+- Let’s update our poll detail template (“polls/detail.html”) from the last tutorial, so that the template contains an HTML `<form>` element:
+```
+# src/polls/templates/polls/detail.html
+<h1>{{ question.question_text }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
+```
+
+- Now, let’s create a Django view that handles the submitted data and does something with it. Remember, in **Tutorial 3**, we created a URLconf for the polls application that includes this line:
+```
+# src/polls/urls.py
+path('<int:question_id>/vote/', views.vote, name='vote'),
+```
+
+- Add the following to **src/polls/views.py**:
+```
+# src/polls/views.py
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+
+from .models import Choice, Question
+# ...
+def vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    try:
+        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
+        # Redisplay the question voting form.
+        return render(request, 'polls/detail.html', {
+            'question': question,
+            'error_message': "You didn't select a choice.",
+        })
+    else:
+        # selected_choice.votes += 1
+        selected_choice.votes = F(votes) + 1
+        selected_choice.save()
+        # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+```
+
+- After somebody votes in a question, the **vote()** view redirects to the results page for the question. Let’s write that view:
+```
+# src/polls/views.py
+from django.shortcuts import get_object_or_404, render
+
+
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
+```
+
+- Now, create a **polls/results.html** template:
+```
+# src/polls/templates/polls/results.html
+<h1>{{ question.question_text }}</h1>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+```
+
+**Use generic views: Less code is better**
+
+Let’s convert our poll app to use the generic views system, so we can delete a bunch of our own code. We’ll just have to take a few steps to make the conversion. We will:
+1. Convert the URLconf.
+2. Delete some of the old, unneeded views.
+3. Introduce new views based on Django’s generic views.
+
+**Amend URLconf**
+- First, open the **polls/urls.py** URLconf and change it like so:
+```
+# src/polls/urls.py
+from django.urls import path
+
+from . import views
+
+app_name = 'polls'
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+**Amend views**
+- Next, we’re going to remove our old **index, detail, and results** views and use Django’s generic views instead. To do so, open the **polls/views.py** file and change it like so:
+```
+# src/polls/views.py
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from django.views import generic
+
+from .models import Choice, Question
+
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+
+
+def vote(request, question_id):
+    ... # same as above, no changes needed.from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from django.views import generic
+
+from .models import Choice, Question
+
+
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
+
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+
+
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+
+
+def vote(request, question_id):
+    ... # same as above, no changes needed.
 ```
