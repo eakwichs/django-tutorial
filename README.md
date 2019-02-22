@@ -122,6 +122,7 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 **Create database user `django_tutorial`**
 - `CREATE USER 'django_tutorial'@'localhost' IDENTIFIED BY 'PWjg147ttL$';`
 - `GRANT ALL PRIVILEGES ON django_tutorial.* TO 'django_tutorial'@'localhost';`
+- `GRANT ALL PRIVILEGES ON test_django_tutorial.* TO 'django_tutorial'@'localhost';`
 
 **Lists the databases on the MySQL server host**
 - `SHOW DATABASES;`
@@ -835,4 +836,150 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     ... # same as above, no changes needed.
+```
+
+## Do Tutorial: Part 5: Testing https://docs.djangoproject.com/en/2.1/intro/tutorial05/
+**Writing our first test**
+- Confirm the bug by using the **shell** to check the method on a question whose date lies in the future:
+
+`python3.7 manage.py shell`
+
+```
+>>> import datetime
+>>> from django.utils import timezone
+>>> from polls.models import Question
+>>> # create a Question instance with pub_date 30 days in the future
+>>> future_question = Question(pub_date=timezone.now() + datetime.timedelta(days=30))
+>>> # was it published recently?
+>>> future_question.was_published_recently()
+True
+```
+- Since things in the future are not ‘recent’, this is clearly wrong.
+- To exit the Python shell, use this command:
+
+`exit()`
+
+**Create a test to expose the bug**
+- Put the following in the tests.py file in the polls application:
+```
+# src/polls/tests.py
+import datetime
+
+from django.test import TestCase
+from django.utils import timezone
+
+from .models import Question
+
+
+class QuestionModelTests(TestCase):
+
+    def test_was_published_recently_with_future_question(self):
+        """
+        was_published_recently() returns False for questions whose pub_date
+        is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        future_question = Question(pub_date=time)
+        self.assertIs(future_question.was_published_recently(), False)
+```
+
+**Running tests**
+- we can run our test:
+
+`python3.7 manage.py test polls`
+- and you’ll see something like:
+```
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+F
+======================================================================
+FAIL: test_was_published_recently_with_future_question (polls.tests.QuestionModelTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/path/to/mysite/polls/tests.py", line 16, in test_was_published_recently_with_future_question
+    self.assertIs(future_question.was_published_recently(), False)
+AssertionError: True is not False
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (failures=1)
+Destroying test database for alias 'default'...
+```
+**Fixing the bug**
+- We already know what the problem is: **Question.was_published_recently()** should return **False** if its **pub_date** is in the future. Amend the method in **models.py**, so that it will only return **True** if the date is also in the past:
+```
+# src/polls/models.py
+def was_published_recently(self):
+    now = timezone.now()
+    return now - datetime.timedelta(days=1) <= self.pub_date <= now
+```
+- and run the test again:
+```
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK
+Destroying test database for alias 'default'...
+```
+**More comprehensive tests**
+- Add two more test methods to the same class, to test the behavior of the method more comprehensively:
+```
+# src/polls/tests.py
+def test_was_published_recently_with_old_question(self):
+    """
+    was_published_recently() returns False for questions whose pub_date
+    is older than 1 day.
+    """
+    time = timezone.now() - datetime.timedelta(days=1, seconds=1)
+    old_question = Question(pub_date=time)
+    self.assertIs(old_question.was_published_recently(), False)
+
+def test_was_published_recently_with_recent_question(self):
+    """
+    was_published_recently() returns True for questions whose pub_date
+    is within the last day.
+    """
+    time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
+    recent_question = Question(pub_date=time)
+    self.assertIs(recent_question.was_published_recently(), True)
+```
+**The Django test client**
+- The first is to set up the test environment in the **shell**:
+
+`python3.7 manage.py shell`
+
+```
+>>> from django.test.utils import setup_test_environment
+>>> setup_test_environment()
+```
+- Next we need to import the test client class (later in **tests.py** we will use the **django.test.TestCase** class, which comes with its own client, so this won’t be required):
+```
+>>> from django.test import Client
+>>> # create an instance of the client for our use
+>>> client = Client()
+```
+- With that ready, we can ask the client to do some work for us:
+```
+>>> # get a response from '/'
+>>> response = client.get('/')
+Not Found: /
+>>> # we should expect a 404 from that address; if you instead see an
+>>> # "Invalid HTTP_HOST header" error and a 400 response, you probably
+>>> # omitted the setup_test_environment() call described earlier.
+>>> response.status_code
+404
+>>> # on the other hand we should expect to find something at '/polls/'
+>>> # we'll use 'reverse()' rather than a hardcoded URL
+>>> from django.urls import reverse
+>>> response = client.get(reverse('polls:index'))
+>>> response.status_code
+200
+>>> response.content
+b'\n    <ul>\n    \n        <li><a href="/polls/1/">What&#39;s up?</a></li>\n    \n    </ul>\n\n'
+>>> response.context['latest_question_list']
+<QuerySet [<Question: What's up?>]>
 ```
