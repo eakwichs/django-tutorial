@@ -468,3 +468,148 @@ admin.site.register(Question)
 - Now that we’ve registered **Question**, Django knows that it should be displayed on the admin index page
 - Click “Questions”. Now you’re at the “change list” page for questions. This page displays all the questions in the database and lets you choose one to change it. There’s the “What’s up?” question we created earlier
 - Click the “What’s up?” question to edit it:
+
+## Do Tutorial: Part 3: Views and templates https://docs.djangoproject.com/en/2.1/intro/tutorial03/
+**Writing more views**
+
+- Now let’s add a few more views to **src/polls/views.py**. These views are slightly different, because they take an argument:
+```
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+```
+
+- Wire these new views into the **polls.urls** module by adding the following **path()** calls:
+```
+# src/polls/urls.py
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    # ex: /polls/
+    path('', views.index, name='index'),
+    # ex: /polls/5/
+    path('<int:question_id>/', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    path('<int:question_id>/results/', views.results, name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+
+**Write views that actually do something**
+- let’s use Django’s own database API, which we covered in **Tutorial 2**. Here’s one stab at a new **index()** view, which displays the latest 5 poll questions in the system, separated by commas, according to publication date:
+```
+# src/polls/views.py
+from django.http import HttpResponse
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ', '.join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
+
+# Leave the rest of the views (detail, results, vote) unchanged
+```
+
+- Create **src/polls/templates/polls/index.html** and put the following code in that template:
+```
+# polls/templates/polls/index.html
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+```
+
+- Now let’s update our index view in **src/polls/views.py** to use the template:
+```
+# src/polls/views.py
+from django.http import HttpResponse
+from django.template import loader
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
+```
+
+**A shortcut: render()**
+```
+# src/polls/views.py
+from django.shortcuts import render
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
+```
+
+**Raising a 404 error**
+- Now, let’s tackle the question detail view – the page that displays the question text for a given poll. Here’s the view:
+```
+# src/polls/views.py
+from django.http import Http404
+from django.shortcuts import render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'polls/detail.html', {'question': question})
+```
+
+- Create **src/polls/templates/polls/detail.html** and put the following code in that template:
+```
+# src/polls/templates/polls/detail.html
+{{ question }}
+```
+
+**A shortcut: get_object_or_404()**
+```
+# src/polls/views.py
+from django.shortcuts import get_object_or_404, render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+```
+
+**Use the template system**
+- Back to the **detail()** view for our poll application. Given the context variable question, here’s what the **src/polls/detail.html** template might look like:
+```
+# src/polls/templates/polls/detail.html
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+```
