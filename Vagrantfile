@@ -32,6 +32,9 @@ Vagrant.configure("2") do |config|
     # Set Ubuntu Language
     sudo locale-gen en_US.UTF-8
 
+    # Configuring date and time zone
+    sudo timedatectl set-timezone Asia/Bangkok
+
     # Install Python 3
     sudo apt-get -y install software-properties-common
     sudo apt-get -y install python3.7
