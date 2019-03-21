@@ -57,7 +57,6 @@
 
 **Connects to vagrant machine via SSH**
 - `vagrant ssh`
-- `cd /vagrant`
 
 **Option, Terminate the virtual machine**
 - `vagrant destroy`
@@ -68,26 +67,31 @@
 
 **Check pip version**
 - `pip --version`
-    > pip 19.0.2 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
-
-**Create folder `src`**
-- `mkdir src`
+    > pip 19.0.3 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 
 **Create a virtual environment**
-- `cd src`
-- `virtualenv --always-copy venv`
+- `mkvirtualenv venv -p python3.7`
+    > (venv) vagrant@ubuntu-bionic:~$
+    
+**Option, If you needs to activate this virtual environment next time, do this**
+- `workon venv`
 
-**To begin using the virtual environment, it needs to be activated**
-- `source venv/bin/activate`
-
-**Option, If you are done working in the virtual environment for the moment, you can deactivate it**
+**Option, If you needs to deactivate this virtual environment, do this**
 - `deactivate`
+
+**Check python version in this virtual environment**
+- `python -V`
+    > Python 3.7.2
+
+**Check pip version in this virtual environment**
+- `pip --version`
+    > pip 19.0.3 from /usr/local/lib/python3.7/dist-packages/pip (python 3.7)
 
 **Install Django**
 - `pip install Django`
 
 **Check Django version**
-- `python3.7 -m django --version`
+- `python -m django --version`
     >2.1.7
 ## Set Up MySQL
 **Install MySQL**
@@ -100,10 +104,10 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 
 1. Go to https://dev.mysql.com/downloads/repo/apt/ for check version-specific-package-name.deb (current is mysql-apt-config_0.8.12-1_all.deb)
 2. `cd /tmp && wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb`
-3. `sudo dpkg -i mysql-apt-config_0.8.12-1_all.deb`
-4. `sudo apt-get update`
-5. `sudo apt-get install mysql-server`
-6. `sudo mysql_secure_installation`
+3. `sudo -H dpkg -i mysql-apt-config_0.8.12-1_all.deb`
+4. `sudo -H apt-get update`
+5. `sudo -H apt-get -y install mysql-server`
+6. `sudo -H mysql_secure_installation`
 
 **Starting and Stopping the MySQL Server**
 - check the status of the MySQL server with the following command:<br>`sudo service mysql status`
@@ -114,7 +118,7 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 - `mysql -V`
 
 **Connect to the MySQL Sever**
-- `sudo mysql -u root -p`
+- `sudo -H mysql -u root -p`
 
 **Create database `django_tutorial`**
 - `CREATE DATABASE django_tutorial CHARACTER SET utf8 COLLATE utf8_general_ci;`
@@ -131,12 +135,16 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 - `SHOW GRANTS FOR 'django_tutorial'@'localhost';`
 
 **Disconnecting from the MySQL Server**
-- `QUIT`
+- `QUIT` or `\q`
 
 **Install mysqlclient**
-- `cd /vagrant/src`
-- `sudo apt-get -y install python3.7-dev default-libmysqlclient-dev gcc libssl-dev`
+- `sudo -H apt-get -y install python3.7-dev default-libmysqlclient-dev gcc libssl-dev`
 - `pip install mysqlclient`
+
+**Create folder `src`**
+- `cd /vagrant`
+- `mkdir src`
+- `cd src`
 
 ## Using Atom
 **Open Atom**
@@ -147,7 +155,7 @@ https://www.tecmint.com/install-mysql-8-in-ubuntu/
 
 ## Do Tutorial: Part 1: Requests and responses https://docs.djangoproject.com/en/2.1/intro/tutorial01/
 **Check Django version**
-- `python3.7 -m django --version`
+- `python -m django --version`
     > 2.1.7
 
 **Creating a project**
@@ -190,14 +198,14 @@ TIME_ZONE = 'Asia/Bangkok'
 
 - Sync your database
 
-`python3.7 manage.py migrate`
+`python manage.py migrate`
 
 **The development server** Let’s verify your Django project works.
-- `python3.7 manage.py runserver 0:8080`
+- `python manage.py runserver 0:8080`
 - visit http://127.0.0.1:8080/ with your Web browser. You’ll see a “Congratulations!” page, with a rocket taking off. It worked!
 
 **Creating the Polls app**
-- `python3.7 manage.py startapp polls`
+- `python manage.py startapp polls`
 
 **Write your first view**
 - Open the file **src/polls/views.py** and put the following Python code in it:
@@ -232,27 +240,16 @@ urlpatterns = [
 ```
 - Lets verify it’s working, run the following command:
 
-`python3.7 manage.py runserver 0:8080`
+`python manage.py runserver 0:8080`
 
 - Go to http://localhost:8080/polls/ in your browser, and you should see the text “Hello, world. You’re at the polls index.”, which you defined in the index view.
-
-**Summary Command**
-
-| From Official | Use this |
-| ---- | ---- |
-| python -m django --version | python3.7 -m django --version |
-| django-admin startproject mysite | django-admin startproject mysite . |
-| python manage.py runserver | python3.7 manage.py migrate<br>python3.7 manage.py runserver 0:8080 |
-| visit http://127.0.0.1:8000/ with your Web browser | visit http://127.0.0.1:8080/ with your Web browser |
-| python manage.py startapp polls | python3.7 manage.py startapp polls |
-| visit http://localhost:8000/polls/ with your Web browser | visit http://localhost:8080/polls/ with your Web browser |
 
 ## Do Tutorial: Part 2: Models and the admin site https://docs.djangoproject.com/en/2.1/intro/tutorial02/
 **Database setup**
 - Open the file **src/mysite/settings.py**. If you wish to use another database, install the appropriate database bindings and change the following keys in the DATABASES 'default' item to match your database connection settings.
 - If you change your database connection settings, run the following command:
 
-`python3.7 manage.py migrate`
+`python manage.py migrate`
 
 **Creating models**
 - Edit the **src/polls/models.py** file so it looks like this:
@@ -286,10 +283,10 @@ INSTALLED_APPS = [
 ```
 - Now Django knows to include the **polls** app. Let’s run another command:
 
-`python3.7 manage.py makemigrations polls`
+`python manage.py makemigrations polls`
 - Generate command that will run the migrations for you and manage your database schema automatically
 
-`python3.7 manage.py sqlmigrate polls 0001`
+`python manage.py sqlmigrate polls 0001`
 - Run **migrate** again to create those model tables in your database:
 
 `python3.7 manage.py migrate`
@@ -297,7 +294,8 @@ INSTALLED_APPS = [
 **Playing with the API**
 - To invoke the Python shell, use this command:
 
-`python3.7 manage.py shell`
+`python manage.py shell`
+
 - Once you’re in the shell, explore the database API:
 ```
 >>> from polls.models import Choice, Question  # Import the model classes we just wrote.
@@ -366,7 +364,8 @@ class Question(models.Model):
 
 `exit()`
 
-`python3.7 manage.py shell`
+`python manage.py shell`
+
 ```
 >>> from polls.models import Choice, Question
 
@@ -470,7 +469,8 @@ Superuser created successfully.
 **Start the development server**
 - If the server is not running start it like so:
 
-`python3.7 manage.py runserver 0:8080`
+`python manage.py runserver 0:8080`
+
 - visit http://localhost:8080/admin/ with your Web browser
 - Now, try logging in with the superuser account you created in the previous step.
 
@@ -675,6 +675,7 @@ urlpatterns = [
 ## Do Tutorial: Part 4: Forms and generic views https://docs.djangoproject.com/en/2.1/intro/tutorial04/
 **Write a simple form**
 - Let’s update our poll detail template (“polls/detail.html”) from the last tutorial, so that the template contains an HTML `<form>` element:
+
 ```
 # src/polls/templates/polls/detail.html
 <h1>{{ question.question_text }}</h1>
@@ -692,12 +693,14 @@ urlpatterns = [
 ```
 
 - Now, let’s create a Django view that handles the submitted data and does something with it. Remember, in **Tutorial 3**, we created a URLconf for the polls application that includes this line:
+
 ```
 # src/polls/urls.py
 path('<int:question_id>/vote/', views.vote, name='vote'),
 ```
 
 - Add the following to **src/polls/views.py**:
+
 ```
 # src/polls/views.py
 from django.http import HttpResponse, HttpResponseRedirect
@@ -739,6 +742,7 @@ def results(request, question_id):
 ```
 
 - Now, create a **polls/results.html** template:
+
 ```
 # src/polls/templates/polls/results.html
 <h1>{{ question.question_text }}</h1>
@@ -775,8 +779,10 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
 ```
+
 **Amend views**
 - Next, we’re going to remove our old **index, detail, and results** views and use Django’s generic views instead. To do so, open the **polls/views.py** file and change it like so:
+
 ```
 # src/polls/views.py
 from django.http import HttpResponseRedirect
@@ -842,7 +848,7 @@ def vote(request, question_id):
 **Writing our first test**
 - Confirm the bug by using the **shell** to check the method on a question whose date lies in the future:
 
-`python3.7 manage.py shell`
+`python manage.py shell`
 
 ```
 >>> import datetime
@@ -861,6 +867,7 @@ True
 
 **Create a test to expose the bug**
 - Put the following in the tests.py file in the polls application:
+
 ```
 # src/polls/tests.py
 import datetime
@@ -886,8 +893,10 @@ class QuestionModelTests(TestCase):
 **Running tests**
 - we can run our test:
 
-`python3.7 manage.py test polls`
+`python manage.py test polls`
+
 - and you’ll see something like:
+
 ```
 Creating test database for alias 'default'...
 System check identified no issues (0 silenced).
@@ -906,6 +915,7 @@ Ran 1 test in 0.001s
 FAILED (failures=1)
 Destroying test database for alias 'default'...
 ```
+
 **Fixing the bug**
 - We already know what the problem is: **Question.was_published_recently()** should return **False** if its **pub_date** is in the future. Amend the method in **models.py**, so that it will only return **True** if the date is also in the past:
 ```
@@ -927,6 +937,7 @@ Destroying test database for alias 'default'...
 ```
 **More comprehensive tests**
 - Add two more test methods to the same class, to test the behavior of the method more comprehensively:
+
 ```
 # src/polls/tests.py
 def test_was_published_recently_with_old_question(self):
@@ -947,22 +958,27 @@ def test_was_published_recently_with_recent_question(self):
     recent_question = Question(pub_date=time)
     self.assertIs(recent_question.was_published_recently(), True)
 ```
+
 **The Django test client**
 - The first is to set up the test environment in the **shell**:
 
-`python3.7 manage.py shell`
+`python manage.py shell`
 
 ```
 >>> from django.test.utils import setup_test_environment
 >>> setup_test_environment()
 ```
+
 - Next we need to import the test client class (later in **tests.py** we will use the **django.test.TestCase** class, which comes with its own client, so this won’t be required):
+
 ```
 >>> from django.test import Client
 >>> # create an instance of the client for our use
 >>> client = Client()
 ```
+
 - With that ready, we can ask the client to do some work for us:
+
 ```
 >>> # get a response from '/'
 >>> response = client.get('/')
