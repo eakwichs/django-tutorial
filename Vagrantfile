@@ -67,15 +67,15 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     # Add PPA That contains more recent Python versions packaged for Ubuntu.
-    sudo add-apt-repository -y ppa:deadsnakes/ppa
+    sudo -H add-apt-repository -y ppa:deadsnakes/ppa
     # Update and upgrade the server packages.
-    sudo apt-get update
-    sudo apt-get -y upgrade
+    sudo -H apt-get update
+    sudo -H apt-get -y upgrade
     # Configuring date and time zone
-    sudo timedatectl set-timezone Asia/Bangkok
+    sudo -H timedatectl set-timezone Asia/Bangkok
     # Install Python 3
-    sudo apt-get -y install software-properties-common
-    sudo apt-get -y install python3.7
+    sudo -H apt-get -y install software-properties-common
+    sudo -H apt-get -y install python3.7
     # Install pip, setuptools, and wheel
     cd /tmp && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     sudo -H python3.7 get-pip.py
