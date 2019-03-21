@@ -14,21 +14,28 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "ubuntu/bionic64"
 
-  # Create a forwarded port mapping which allows access to a specific port
-  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8080
-  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 3306, host: 3306
-  
+  # Disable automatic box update checking. If you disable this, then
+  # boxes will only be checked for updates when the user runs
+  # `vagrant box outdated`. This is not recommended.
+  # config.vm.box_check_update = false
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
   # config.vm.network "forwarded_port", guest: 8080, host: 8080
   # config.vm.network "forwarded_port", guest: 3306, host: 3306
-  
+
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine and only allow access
+  # via 127.0.0.1 to disable public access
+  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", host_ip: "127.0.0.1", guest: 3306, host: 3306
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
-  
+
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
@@ -61,23 +68,24 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     # Add PPA That contains more recent Python versions packaged for Ubuntu.
     sudo add-apt-repository -y ppa:deadsnakes/ppa
-
     # Update and upgrade the server packages.
     sudo apt-get update
     sudo apt-get -y upgrade
-
     # Configuring date and time zone
     sudo timedatectl set-timezone Asia/Bangkok
-
     # Install Python 3
     sudo apt-get -y install software-properties-common
     sudo apt-get -y install python3.7
-
     # Install pip, setuptools, and wheel
     cd /tmp && curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     sudo -H python3.7 get-pip.py
-
     # Install virtualenv
-    sudo -H pip install virtualenv
+    sudo -H pip install virtualenv virtualenvwrapper
+    if ! grep -q "virtualenv and virtualenvwrapper" /home/vagrant/.bashrc; then
+      echo -e "\n# virtualenv and virtualenvwrapper" >> /home/vagrant/.bashrc
+      echo "export WORKON_HOME=~/.virtualenvs" >> /home/vagrant/.bashrc
+      echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.7" >> /home/vagrant/.bashrc
+      echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc
+    fi
   SHELL
 end
