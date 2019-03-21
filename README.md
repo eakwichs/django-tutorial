@@ -289,7 +289,7 @@ INSTALLED_APPS = [
 `python manage.py sqlmigrate polls 0001`
 - Run **migrate** again to create those model tables in your database:
 
-`python3.7 manage.py migrate`
+`python manage.py migrate`
 
 **Playing with the API**
 - To invoke the Python shell, use this command:
@@ -452,7 +452,7 @@ True
 **Creating an admin user**
 - First we’ll need to create a user who can login to the admin site. Run the following command:
 
-`python3.7 manage.py createsuperuser`
+`python manage.py createsuperuser`
 - Enter your desired username and press enter.
 
 `Username: admin`
