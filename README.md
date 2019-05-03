@@ -102,9 +102,9 @@ https://phoenixnap.com/kb/how-to-install-mysql-on-ubuntu-18-04
 
 https://www.tecmint.com/install-mysql-8-in-ubuntu/
 
-1. Go to https://dev.mysql.com/downloads/repo/apt/ for check version-specific-package-name.deb (current is mysql-apt-config_0.8.12-1_all.deb)
-2. `cd /tmp && wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.12-1_all.deb`
-3. `sudo -H dpkg -i mysql-apt-config_0.8.12-1_all.deb`
+1. Go to https://dev.mysql.com/downloads/repo/apt/ for check version-specific-package-name.deb (current is mysql-apt-config_0.8.13-1_all.deb)
+2. `cd /tmp && wget -c https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb`
+3. `sudo -H dpkg -i mysql-apt-config_0.8.13-1_all.deb`
 4. `sudo -H apt-get update`
 5. `sudo -H apt-get -y install mysql-server`
 6. `sudo -H mysql_secure_installation`
